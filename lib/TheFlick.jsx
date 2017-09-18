@@ -277,7 +277,7 @@ class TheFlick extends React.Component {
           <h3 className='the-flick-image-title'>{title}</h3>
         </TheCondition>
         <TheCondition if={Boolean(description)}>
-          <p className='the-flick-image-description'>{description}</p>
+          <div className='the-flick-image-description'>{description}</div>
         </TheCondition>
       </div>
     )
