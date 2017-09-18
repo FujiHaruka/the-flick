@@ -83,6 +83,32 @@
         "returns": null
       },
       {
+        "name": "changeIndexTo",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "nextIndex",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "FlipButton",
+        "docblock": null,
+        "modifiers": [
+          "static"
+        ],
+        "params": [
+          {
+            "name": "{onClick, icon, className, style}",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
         "name": "Image",
         "docblock": null,
         "modifiers": [
