@@ -110,7 +110,9 @@ class TheFlick extends React.Component {
                          })}
                          ref={(imageWrap) => {s.imageWraps[i] = imageWrap}}
                     >
-                      <TheFlick.Image {...props}/>
+                      <TheCondition if={Math.abs(activeIndex - i) < 2}>
+                        <TheFlick.Image {...props}/>
+                      </TheCondition>
                     </div>
                   ))
                 }

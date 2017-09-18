@@ -84,7 +84,7 @@ TheFlickStyle.data = (options) => {
       width: '100%',
       overflow: 'hidden',
       boxSizing: 'border-box',
-      background: '#404040',
+      background: 'rgba(44, 44, 44, 0.9)',
       border: '1px solid #111',
       borderRadius: '4px',
       transition: 'height 300ms',
@@ -114,7 +114,7 @@ TheFlickStyle.data = (options) => {
       flexDirection: 'column',
       width: '100%',
       height: '100%',
-      padding: '4px',
+      padding: '4px 32px',
       boxSizing: 'border-box',
       '.the-image': {
         background: 'transparent'
@@ -148,9 +148,9 @@ TheFlickStyle.data = (options) => {
       backgroundColor: 'rgba(0,0,0,0.5)',
       borderColor: '#EEE',
       color: '#CCC',
-      height: '64px',
+      height: '128px',
       padding: 0,
-      minWidth: '18px',
+      minWidth: '21px',
       borderRadius: '4px',
       '&:active': {
         color: '#888'

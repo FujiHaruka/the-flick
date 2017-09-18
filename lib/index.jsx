@@ -1,7 +1,7 @@
 /**
  * Flickable viewer of the-components
  * @module the-flick
- * @version 1.0.0
+ * @version 1.0.1
  */
 'use strict'
 
