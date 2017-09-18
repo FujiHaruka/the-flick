@@ -89,7 +89,8 @@ TheFlickStyle.data = (options) => {
       borderRadius: '4px',
       transition: 'height 300ms',
       zIndex: 4,
-      color: '#AAA'
+      color: '#AAA',
+      boxShadow: '2px 2px 4px rgba(0,0,0,0.33)'
     },
     '.the-flick-image-body-inner': {
       display: 'flex',
@@ -130,9 +131,17 @@ TheFlickStyle.data = (options) => {
       margin: '8px 0',
       textAlign: 'center',
       fontWeight: 'normal',
-      fontSize: '1.5em'
+      fontSize: '1.5em',
+      width: '100%',
+      boxSizing: 'border-box'
     },
-    '.the-flick-image-description': {},
+    '.the-flick-image-description': {
+      margin: '0',
+      fontSize: 'smaller',
+      width: '100%',
+      boxSizing: 'border-box',
+      textAlign: 'center'
+    },
     '.the-flick-flip-button-wrap': {
       position: 'absolute',
       zIndex: 5,
@@ -145,9 +154,9 @@ TheFlickStyle.data = (options) => {
       overflow: 'visible'
     },
     '.the-flick-flip-button': {
-      backgroundColor: 'rgba(0,0,0,0.5)',
-      borderColor: '#EEE',
-      color: '#CCC',
+      backgroundColor: 'transparent',
+      borderColor: '#AAA',
+      color: '#AAA',
       height: '128px',
       padding: 0,
       minWidth: '21px',
