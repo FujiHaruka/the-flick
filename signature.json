@@ -124,6 +124,17 @@
       }
     ],
     "props": {
+      "title": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Flick title",
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        }
+      },
       "images": {
         "type": {
           "name": "arrayOf",
