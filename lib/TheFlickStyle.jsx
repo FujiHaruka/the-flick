@@ -56,20 +56,33 @@ TheFlickStyle.data = (options) => {
       boxSizing: 'border-box',
       display: 'block'
     },
+    '.the-flick-content': {
+      position: 'relative',
+      width: '100%',
+      height: '100%',
+      color: '#AAA',
+      background: 'rgba(44, 44, 44, 0.9)',
+      border: '1px solid #111',
+      borderRadius: '4px',
+      boxShadow: '2px 2px 4px rgba(0,0,0,0.33)',
+      boxSizing: 'border-box',
+      zIndex: 4,
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column'
+    },
     '.the-flick-inner': {
       height: '100%',
       width: '100%',
       boxSizing: 'border-box',
       position: 'relative',
-      padding: '36px 24px',
+      padding: '24px 24px',
       zIndex: 4,
+      display: 'flex',
       justifyContent: 'center',
       flexDirection: 'column'
     },
     '.the-flick-close-button': {
-      position: 'absolute',
-      top: 0,
-      right: 0,
       padding: '16px',
       fontSize: '16px',
       lineHeight: `16px`,
@@ -79,18 +92,43 @@ TheFlickStyle.data = (options) => {
       cursor: 'pointer',
       zIndex: 44
     },
+    '.the-flick-header': {
+      position: 'relative',
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '44px'
+    },
+    '.the-flick-header-row': {
+      width: '48px',
+      '&:nth-child(1)': {
+        textAlign: 'left'
+      },
+      '&:nth-child(2)': {
+        width: '100%'
+      },
+      '&:nth-child(3)': {
+        textAlign: 'right'
+      },
+    },
+    '.the-flick-header-title': {
+      display: 'block',
+      width: '100%',
+      textAlign: 'center',
+      margin: '0',
+      lineHeight: '48px'
+    },
     '.the-flick-body': {
       position: 'relative',
       width: '100%',
+      height: '100%',
       overflow: 'hidden',
       boxSizing: 'border-box',
-      background: 'rgba(44, 44, 44, 0.9)',
-      border: '1px solid #111',
-      borderRadius: '4px',
       transition: 'height 300ms',
-      zIndex: 4,
-      color: '#AAA',
-      boxShadow: '2px 2px 4px rgba(0,0,0,0.33)'
+    },
+    '.the-flick-footer': {
+      height: '44px'
     },
     '.the-flick-image-body-inner': {
       display: 'flex',
@@ -105,7 +143,8 @@ TheFlickStyle.data = (options) => {
       }
     },
     '.the-flick-image-wrap': {
-      width: '100%'
+      width: '100%',
+      height: '100%'
     },
     '.the-flick-image-wrap-active': {},
     '.the-flick-image': {

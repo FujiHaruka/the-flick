@@ -41,6 +41,7 @@ class TheFlick extends React.Component {
       nextIndex
     } = state
     const {
+      title,
       className,
       present,
       spinning,
@@ -63,62 +64,74 @@ class TheFlick extends React.Component {
           <div className='the-flick-back' onClick={() => onClose()}>
             <div className='the-flick-back-inner'/>
           </div>
-          <div className='the-flick-body'
-               ref={(body) => { s.body = body }}>
-            <TheCondition if={spinning}>
-              <TheSpin enabled={spinning}
-                       cover
-                       className='the-flick-spin'
-              />
-            </TheCondition>
-            <a onClick={() => onClose()}
-               className='the-flick-close-button'>
-              <TheIcon className={TheFlick.CLOSE_ICON}/>
-            </a>
-            <TheCondition if={nextIndex > 0}>
-              <TheFlick.FlipButton icon={TheFlick.PREV_ICON}
-                                   onClick={() => s.changeIndexTo(activeIndex - 1)}
-                                   style={{left: '16px'}}
-              />
-            </TheCondition>
-            <TheCondition if={nextIndex < count - 1}>
-              <TheFlick.FlipButton icon={TheFlick.NEXT_ICON}
-                                   onClick={() => s.changeIndexTo(activeIndex + 1)}
-                                   style={{right: '16px'}}
-              />
-            </TheCondition>
-            <Draggable axis='x'
-                       position={draggingPosition}
-                       onStart={(e, data) => s.handleDragStart(e, data)}
-                       onDrag={(e, data) => s.handleDragDrag(e, data)}
-                       onStop={(e, data) => s.handleDragStop(e, data)}
-                       bounds={s.getBounds()}
-            >
-              <div className={c('the-flick-image-body-inner', {
-                'the-flick-image-body-inner-animating': animating
-              })}
-                   style={{
-                     left: `${activeIndex * -100}%`,
-                     width: `${count * 100}%`
-                   }}
-              >
-                {
-                  images.map((props, i, arr) => (
-                    <div key={i}
-                         className={c('the-flick-image-wrap', {
-                           'the-flick-image-wrap-active': i === activeIndex
-                         })}
-                         ref={(imageWrap) => {s.imageWraps[i] = imageWrap}}
-                    >
-                      <TheCondition if={Math.abs(activeIndex - i) < 2}>
-                        <TheFlick.Image {...props}/>
-                      </TheCondition>
-                    </div>
-                  ))
-                }
+          <div className='the-flick-content'>
+            <div className='the-flick-header'>
+              <div className='the-flick-header-row'></div>
+              <div className='the-flick-header-row'>
+                <h5 className='the-flick-header-title'>{title || `${activeIndex + 1} / ${count}`}</h5>
               </div>
-            </Draggable>
-            {children}
+              <div className='the-flick-header-row'>
+                <a onClick={() => onClose()}
+                   className='the-flick-close-button'>
+                  <TheIcon className={TheFlick.CLOSE_ICON}/>
+                </a>
+              </div>
+            </div>
+            <div className='the-flick-body'
+                 ref={(body) => { s.body = body }}>
+              <TheCondition if={spinning}>
+                <TheSpin enabled={spinning}
+                         cover
+                         className='the-flick-spin'
+                />
+              </TheCondition>
+              <TheCondition if={nextIndex > 0}>
+                <TheFlick.FlipButton icon={TheFlick.PREV_ICON}
+                                     onClick={() => s.changeIndexTo(activeIndex - 1)}
+                                     style={{left: '16px'}}
+                />
+              </TheCondition>
+              <TheCondition if={nextIndex < count - 1}>
+                <TheFlick.FlipButton icon={TheFlick.NEXT_ICON}
+                                     onClick={() => s.changeIndexTo(activeIndex + 1)}
+                                     style={{right: '16px'}}
+                />
+              </TheCondition>
+              <Draggable axis='x'
+                         position={draggingPosition}
+                         onStart={(e, data) => s.handleDragStart(e, data)}
+                         onDrag={(e, data) => s.handleDragDrag(e, data)}
+                         onStop={(e, data) => s.handleDragStop(e, data)}
+                         bounds={s.getBounds()}
+              >
+                <div className={c('the-flick-image-body-inner', {
+                  'the-flick-image-body-inner-animating': animating
+                })}
+                     style={{
+                       left: `${activeIndex * -100}%`,
+                       width: `${count * 100}%`
+                     }}
+                >
+                  {
+                    images.map((props, i, arr) => (
+                      <div key={i}
+                           className={c('the-flick-image-wrap', {
+                             'the-flick-image-wrap-active': i === activeIndex
+                           })}
+                           ref={(imageWrap) => {s.imageWraps[i] = imageWrap}}
+                      >
+                        <TheCondition if={Math.abs(activeIndex - i) < 2}>
+                          <TheFlick.Image {...props}/>
+                        </TheCondition>
+                      </div>
+                    ))
+                  }
+                </div>
+              </Draggable>
+              {children}
+            </div>
+            <div className='the-flick-footer'>
+            </div>
           </div>
         </div>
       </div>
@@ -290,6 +303,8 @@ TheFlick.PREV_ICON = 'fa fa-chevron-left'
 TheFlick.NEXT_ICON = 'fa fa-chevron-right'
 
 TheFlick.propTypes = {
+  /** Flick title */
+  title: PropTypes.string,
   /** Images to flip */
   images: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.object])
@@ -307,6 +322,7 @@ TheFlick.propTypes = {
 }
 
 TheFlick.defaultProps = {
+  title: null,
   images: [],
   activeIndex: 0,
   present: false,
