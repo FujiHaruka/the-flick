@@ -81,12 +81,17 @@ import { TheFlick, TheFlickStyle } from 'the-flick'
 import { TheButton, TheButtonStyle } from 'the-button'
 import { TheSpinStyle } from 'the-spin'
 import { TheImageStyle } from 'the-image'
+import { TheVideoStyle } from 'the-video'
 
 const imageUrls = [
   'https://raw.githubusercontent.com/apeman-asset-labo/apeman-asset-images/master/dist/dummy/01.jpg',
   'https://raw.githubusercontent.com/apeman-asset-labo/apeman-asset-images/master/dist/dummy/02.jpg',
   'https://raw.githubusercontent.com/apeman-asset-labo/apeman-asset-images/master/dist/dummy/03.jpg',
   'https://raw.githubusercontent.com/apeman-asset-labo/apeman-asset-images/master/dist/dummy/04.jpg',
+]
+
+const videoUrls = [
+  './mov_bbb.mp4'
 ]
 
 class ExampleComponent extends React.PureComponent {
@@ -106,6 +111,7 @@ class ExampleComponent extends React.PureComponent {
         <TheButtonStyle/>
         <TheSpinStyle/>
         <TheImageStyle/>
+        <TheVideoStyle/>
         <TheFlickStyle/>
 
         <TheButton onClick={() => s.setState({present: true})}>
@@ -120,6 +126,7 @@ class ExampleComponent extends React.PureComponent {
                     {src: imageUrls[1], spinning: true},
                     {src: imageUrls[2], title: 'Some title'},
                     {src: imageUrls[3], title: 'Some title', description: 'This is image description'},
+                    {src: videoUrls[0], title: 'Some video'}
                   ]}
         />
       </div>
@@ -150,6 +157,7 @@ Flickable viewer of the-components
 
 | Name | Type | Description | Default |
 | --- | --- | ---- | ---- |
+| `title` | string  | Flick title | `null` |
 | `images` | arrayOf union | Images to flip | `[]` |
 | `activeIndex` | number  | Active index of images | `0` |
 | `present` | bool  | Shows the dialog | `false` |

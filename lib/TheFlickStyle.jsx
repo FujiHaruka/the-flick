@@ -159,7 +159,17 @@ TheFlickStyle.data = (options) => {
       '.the-image': {
         background: 'transparent'
       },
+      '.the-video': {
+        background: 'transparent'
+      },
+      '.the-video-inner': {
+        height: 'auto'
+      },
       '.the-image-spin': {
+        fontSize: '44px',
+        color: '#888'
+      },
+      '.the-video-spin': {
         fontSize: '44px',
         color: '#888'
       }

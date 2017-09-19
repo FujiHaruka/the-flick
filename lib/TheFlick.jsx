@@ -10,8 +10,11 @@ import { TheSpin } from 'the-spin'
 import { TheIcon } from 'the-icon'
 import { TheButton } from 'the-button'
 import { TheImage } from 'the-image'
+import { TheVideo } from 'the-video'
 import { TheCondition } from 'the-condition'
 import Draggable from 'react-draggable'
+import videoExtensions from 'video-extensions'
+import path from 'path'
 
 const toggleDocumentScroll = (enabled) => toggleBodyClass('the-flick-fix', enabled)
 
@@ -280,12 +283,24 @@ class TheFlick extends React.Component {
       title,
       description
     } = props
+
+    const isVideo = videoExtensions.includes(path.extname(src).replace(/^\./, ''))
     return (
       <div className='the-flick-image'>
-        <TheImage clasName={'the-flick-image-image'}
-                  scale={'fit'}
-                  {...{src, alt}}
-        />
+        <TheCondition if={isVideo}>
+          <TheVideo clasName={c('the-flick-image-image')}
+                    preload='metadata'
+                    scale='fit'
+                    controls
+                    {...{src, alt}}
+          />
+        </TheCondition>
+        <TheCondition unless={isVideo}>
+          <TheImage clasName={c('the-flick-image-image')}
+                    scale='fit'
+                    {...{src, alt}}
+          />
+        </TheCondition>
         <TheCondition if={Boolean(title)}>
           <h3 className='the-flick-image-title'>{title}</h3>
         </TheCondition>
