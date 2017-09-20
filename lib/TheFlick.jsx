@@ -15,6 +15,7 @@ import { TheCondition } from 'the-condition'
 import Draggable from 'react-draggable'
 import videoExtensions from 'video-extensions'
 import path from 'path'
+import url from 'url'
 
 const toggleDocumentScroll = (enabled) => toggleBodyClass('the-flick-fix', enabled)
 
@@ -284,7 +285,8 @@ class TheFlick extends React.Component {
       description
     } = props
 
-    const isVideo = videoExtensions.includes(path.extname(src).replace(/^\./, ''))
+    const srcPathname = url.parse(src || '').pathname
+    const isVideo = videoExtensions.includes(path.extname(srcPathname).replace(/^\./, ''))
     return (
       <div className='the-flick-image'>
         <TheCondition if={isVideo}>
