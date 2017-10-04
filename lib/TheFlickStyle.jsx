@@ -160,11 +160,13 @@ TheFlickStyle.data = (options) => {
         background: 'transparent'
       },
       '.the-video': {
-        background: 'transparent'
+        background: 'transparent',
+        display: 'block'
       },
       '.the-video-inner': {
         height: 'auto'
       },
+      '.the-video-video': {},
       '.the-image-spin': {
         fontSize: '44px',
         color: '#888'
@@ -175,16 +177,20 @@ TheFlickStyle.data = (options) => {
       }
     },
     '.the-flick-image-title': {
+      position: 'relative',
+      zIndex: 2,
       color: '#CCC',
       display: 'block',
-      margin: '8px 0',
+      margin: '4px 0',
       textAlign: 'center',
       fontWeight: 'normal',
-      fontSize: '1.5em',
+      fontSize: '1.33em',
       width: '100%',
       boxSizing: 'border-box'
     },
     '.the-flick-image-description': {
+      position: 'relative',
+      zIndex: 2,
       margin: '0',
       fontSize: 'smaller',
       width: '100%',
