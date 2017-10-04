@@ -282,11 +282,12 @@ class TheFlick extends React.Component {
       src,
       alt,
       title,
+      type,
       description
     } = props
 
     const srcPathname = url.parse(src || '').pathname
-    const isVideo = videoExtensions.includes(path.extname(srcPathname).replace(/^\./, ''))
+    const isVideo = (type === 'video') || videoExtensions.includes(path.extname(srcPathname).replace(/^\./, ''))
     return (
       <div className='the-flick-image'>
         <TheCondition if={isVideo}>
