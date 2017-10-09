@@ -87,6 +87,7 @@ class TheFlick extends React.Component {
                          className='the-flick-spin'
                 />
               </TheCondition>
+
               <TheCondition if={nextIndex > 0}>
                 <TheFlick.FlipButton icon={TheFlick.PREV_ICON}
                                      onClick={() => s.changeIndexTo(activeIndex - 1)}
@@ -297,26 +298,30 @@ class TheFlick extends React.Component {
     const isVideo = (type === 'video') || isVideoSrc(src)
     return (
       <div className='the-flick-image'>
-        <TheCondition if={isVideo}>
-          <TheVideo clasName={c('the-flick-image-image')}
-                    preload='metadata'
-                    scale='fit'
-                    controls
-                    {...{src, alt}}
-          />
-        </TheCondition>
-        <TheCondition unless={isVideo}>
-          <TheImage clasName={c('the-flick-image-image')}
-                    scale='fit'
-                    {...{src, alt}}
-          />
-        </TheCondition>
-        <TheCondition if={Boolean(title)}>
-          <h3 className='the-flick-image-title'>{title}</h3>
-        </TheCondition>
-        <TheCondition if={Boolean(description)}>
-          <div className='the-flick-image-description'>{description}</div>
-        </TheCondition>
+        <div className='the-flick-image-inner'>
+          <TheCondition if={isVideo}>
+            <TheVideo clasName={c('the-flick-image-image')}
+                      preload='metadata'
+                      scale='fit'
+                      controls
+                      {...{src, alt}}
+            />
+          </TheCondition>
+          <TheCondition unless={isVideo}>
+            <TheImage clasName={c('the-flick-image-image')}
+                      scale='fit'
+                      {...{src, alt}}
+            />
+          </TheCondition>
+          <div className='the-flick-image-info'>
+            <TheCondition if={Boolean(title)}>
+              <h3 className='the-flick-image-title'>{title}</h3>
+            </TheCondition>
+            <TheCondition if={Boolean(description)}>
+              <div className='the-flick-image-description'>{description}</div>
+            </TheCondition>
+          </div>
+        </div>
       </div>
     )
   }

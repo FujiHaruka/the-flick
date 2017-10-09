@@ -40,8 +40,7 @@
     "the-spin": "^2.0.0",
     "the-style": "^2.0.0",
     "the-video": "^2.0.0",
-    "the-window": "^5.0.0",
-    "video-extensions": "^1.1.0"
+    "the-window": "^5.0.0"
   },
   "devDependencies": {
     "react": "^16.0.0",
@@ -57,11 +56,11 @@
     "the-templates": "^2.0.1"
   },
   "peerDependencies": {
-    "react": ">=15",
-    "react-dom": ">=15"
+    "react": ">=16",
+    "react-dom": ">=16"
   },
   "engines": {
-    "node": ">=7.6",
+    "node": ">=8",
     "npm": ">=4"
   }
 }
