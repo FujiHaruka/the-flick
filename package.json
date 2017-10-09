@@ -33,13 +33,14 @@
     "prop-types": "^15.6.0",
     "react-draggable": "^3.0.3",
     "the-button": "^2.0.0",
-    "the-component-util": "^2.0.0",
+    "the-component-util": "^2.1.0",
     "the-condition": "^2.0.0",
     "the-icon": "^2.0.0",
-    "the-image": "^1.1.8",
+    "the-image": "^1.1.9",
     "the-spin": "^2.0.0",
     "the-style": "^2.0.0",
     "the-video": "^2.0.0",
+    "the-window": "^5.0.0",
     "video-extensions": "^1.1.0"
   },
   "devDependencies": {
@@ -53,7 +54,7 @@
     "the-script-share": "^1.0.5",
     "the-script-test": "^2.0.1",
     "the-script-update": "^1.0.0",
-    "the-templates": "^2.0.0"
+    "the-templates": "^2.0.1"
   },
   "peerDependencies": {
     "react": ">=15",

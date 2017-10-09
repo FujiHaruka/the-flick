@@ -4,7 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import TheFlickStyle from './TheFlickStyle'
-import { htmlAttributesFor, eventHandlersFor, toggleBodyClass } from 'the-component-util'
+import { htmlAttributesFor, eventHandlersFor, toggleBodyClass, isVideoSrc } from 'the-component-util'
 import { get } from 'the-window'
 import { TheSpin } from 'the-spin'
 import { TheIcon } from 'the-icon'
@@ -13,9 +13,6 @@ import { TheImage } from 'the-image'
 import { TheVideo } from 'the-video'
 import { TheCondition } from 'the-condition'
 import Draggable from 'react-draggable'
-import videoExtensions from 'video-extensions'
-import path from 'path'
-import url from 'url'
 
 const toggleDocumentScroll = (enabled) => toggleBodyClass('the-flick-fix', enabled)
 
@@ -34,6 +31,7 @@ class TheFlick extends React.Component {
     s.body = null
     s.imageWraps = []
     s.movingTimer = -1
+    s.resizeTimer = -1
   }
 
   render () {
@@ -52,8 +50,7 @@ class TheFlick extends React.Component {
       children,
       images,
       onClose,
-      activeIndex,
-      onChange
+      activeIndex
     } = props
 
     const count = images.length
@@ -70,7 +67,8 @@ class TheFlick extends React.Component {
           </div>
           <div className='the-flick-content'>
             <div className='the-flick-header'>
-              <div className='the-flick-header-row'></div>
+              <div className='the-flick-header-row'>
+              </div>
               <div className='the-flick-header-row'>
                 <h5 className='the-flick-header-title'>{title || `${activeIndex + 1} / ${count}`}</h5>
               </div>
@@ -144,11 +142,19 @@ class TheFlick extends React.Component {
 
   componentDidMount () {
     const s = this
+    const {props} = s
+    toggleDocumentScroll(props.present)
+    s.resizeTimer = setInterval(() => {
+
+    }, 500)
   }
 
   componentWillReceiveProps (nextProps) {
     const s = this
     const {props} = s
+    if (props.present !== nextProps.present) {
+      toggleDocumentScroll(nextProps.present)
+    }
 
     const nextIndex = nextProps.activeIndex
     const updateNextIndex = (nextIndex === null) || (props.activeIndex !== nextIndex)
@@ -160,6 +166,8 @@ class TheFlick extends React.Component {
   componentWillUnmount () {
     const s = this
     clearTimeout(s.movingTimer)
+    clearTimeout(s.resizeTimer)
+    toggleDocumentScroll(false)
   }
 
   getBounds () {
@@ -286,8 +294,7 @@ class TheFlick extends React.Component {
       description
     } = props
 
-    const srcPathname = url.parse(src || '').pathname
-    const isVideo = (type === 'video') || videoExtensions.includes(path.extname(srcPathname).replace(/^\./, ''))
+    const isVideo = (type === 'video') || isVideoSrc(src)
     return (
       <div className='the-flick-image'>
         <TheCondition if={isVideo}>
