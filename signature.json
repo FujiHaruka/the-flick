@@ -107,20 +107,6 @@
           }
         ],
         "returns": null
-      },
-      {
-        "name": "Image",
-        "docblock": null,
-        "modifiers": [
-          "static"
-        ],
-        "params": [
-          {
-            "name": "props",
-            "type": null
-          }
-        ],
-        "returns": null
       }
     ],
     "props": {

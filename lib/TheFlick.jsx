@@ -116,18 +116,20 @@ class TheFlick extends React.Component {
                      }}
                 >
                   {
-                    images.map((props, i, arr) => (
-                      <div key={i}
-                           className={c('the-flick-image-wrap', {
-                             'the-flick-image-wrap-active': i === activeIndex
-                           })}
-                           ref={(imageWrap) => {s.imageWraps[i] = imageWrap}}
-                      >
-                        <TheCondition if={Math.abs(activeIndex - i) < 2}>
-                          <TheFlick.Image {...props}/>
-                        </TheCondition>
-                      </div>
-                    ))
+                    images
+                      .map((props) => typeof props === 'string' ? {src: props} : props)
+                      .map((props, i, arr) => (
+                        <div key={i}
+                             className={c('the-flick-image-wrap', {
+                               'the-flick-image-wrap-active': i === activeIndex
+                             })}
+                             ref={(imageWrap) => {s.imageWraps[i] = imageWrap}}
+                        >
+                          <TheCondition if={Math.abs(activeIndex - i) < 2}>
+                            <TheFlick.Image {...props}/>
+                          </TheCondition>
+                        </div>
+                      ))
                   }
                 </div>
               </Draggable>
@@ -283,10 +285,23 @@ class TheFlick extends React.Component {
     )
   }
 
-  static Image (props) {
-    if (typeof props === 'string') {
-      props = {src: props}
+}
+
+class TheFlickImage extends React.Component {
+  constructor (props) {
+    super(props)
+    const s = this
+    s.resizeTimer = -1
+    s.imageElm = null
+    s.innerElm = null
+    s.state = {
+      scale: 1
     }
+  }
+
+  render () {
+    const s = this
+    const {props, state} = s
     const {
       src,
       alt,
@@ -294,11 +309,17 @@ class TheFlick extends React.Component {
       type,
       description
     } = props
+    const {scale} = state
 
     const isVideo = (type === 'video') || isVideoSrc(src)
     return (
-      <div className='the-flick-image'>
-        <div className='the-flick-image-inner'>
+      <div className='the-flick-image'
+           ref={(imageElm) => { s.imageElm = imageElm }}
+      >
+        <div className='the-flick-image-inner'
+             ref={(innerElm) => { s.innerElm = innerElm }}
+             style={scale < 1 ? {transform: `scale(${scale},${scale})`} : {}}
+        >
           <TheCondition if={isVideo}>
             <TheVideo clasName={c('the-flick-image-image')}
                       preload='metadata'
@@ -311,6 +332,8 @@ class TheFlick extends React.Component {
             <TheImage clasName={c('the-flick-image-image')}
                       scale='fit'
                       {...{src, alt}}
+                      width='auto'
+                      height='auto'
             />
           </TheCondition>
           <div className='the-flick-image-info'>
@@ -325,9 +348,33 @@ class TheFlick extends React.Component {
       </div>
     )
   }
+
+  componentDidMount () {
+    const s = this
+    s.resizeTimer = setInterval(() => {
+      const {imageElm, innerElm} = s
+      if (!imageElm || !innerElm) {
+        return
+      }
+      const maxHeight = imageElm.offsetHeight
+      const height = innerElm.offsetHeight
+      const scale = Math.min(maxHeight, height) / height
+      if (s.state.scale !== scale) {
+        console.log(maxHeight, height, scale)
+        s.setState({scale})
+      }
+    }, 300)
+  }
+
+  componentWillUnmount () {
+    const s = this
+    clearTimeout(s.resizeTimer)
+  }
+
 }
 
 TheFlick.Style = TheFlickStyle
+TheFlick.Image = TheFlickImage
 TheFlick.CLOSE_ICON = 'fa fa-close'
 TheFlick.PREV_ICON = 'fa fa-chevron-left'
 TheFlick.NEXT_ICON = 'fa fa-chevron-right'

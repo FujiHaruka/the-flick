@@ -160,6 +160,10 @@ TheFlickStyle.data = (options) => {
         '.the-image': {
           background: 'transparent'
         },
+        '.the-image-img': {
+          width: 'auto !important',
+          height: 'auto !important'
+        },
         '.the-video': {
           background: 'transparent',
           display: 'block',
@@ -182,7 +186,9 @@ TheFlickStyle.data = (options) => {
       '.the-flick-image-inner': {
         display: 'block',
         width: '100%',
-        position: 'relative'
+        position: 'relative',
+        transition: 'transform 150ms',
+        transformOrigin: '50% 50%'
       },
       '.the-flick-image-info': {
         display: 'block',
