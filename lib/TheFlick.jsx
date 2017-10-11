@@ -360,7 +360,6 @@ class TheFlickImage extends React.Component {
       const height = innerElm.offsetHeight
       const scale = Math.min(maxHeight, height) / height
       if (s.state.scale !== scale) {
-        console.log(maxHeight, height, scale)
         s.setState({scale})
       }
     }, 300)
