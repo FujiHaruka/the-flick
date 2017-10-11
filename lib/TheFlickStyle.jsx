@@ -187,6 +187,7 @@ TheFlickStyle.data = (options) => {
         display: 'block',
         width: '100%',
         position: 'relative',
+        textAlign: 'center',
         transition: 'transform 150ms',
         transformOrigin: '50% 50%'
       },
