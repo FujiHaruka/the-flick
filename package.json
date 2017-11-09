@@ -1,6 +1,6 @@
 {
   "name": "the-flick",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "Flickable viewer of the-components",
   "main": "shim",
   "scripts": {
