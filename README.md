@@ -165,6 +165,11 @@ Flickable viewer of the-components
 | `onClose` | func  | Close handler | `() => {}` |
 | `spinning` | bool  | Show spin | `false` |
 
+### 
+
+
+
+
 ### TheFlickStyle
 
 Style for TheFlick

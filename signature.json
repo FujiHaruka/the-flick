@@ -200,6 +200,10 @@
       }
     }
   },
+  "undefined": {
+    "description": "",
+    "methods": []
+  },
   "TheFlickStyle": {
     "description": "Style for TheFlick",
     "displayName": "TheFlickStyle",

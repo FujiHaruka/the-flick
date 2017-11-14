@@ -4,13 +4,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import TheFlickStyle from './TheFlickStyle'
-import { htmlAttributesFor, eventHandlersFor, toggleBodyClass, isVideoSrc } from 'the-component-util'
-import { get } from 'the-window'
+import { htmlAttributesFor, eventHandlersFor, toggleBodyClass } from 'the-component-util'
 import { TheSpin } from 'the-spin'
 import { TheIcon } from 'the-icon'
 import { TheButton } from 'the-button'
-import { TheImage } from 'the-image'
-import { TheVideo } from 'the-video'
+import TheFlickImage from './TheFlickImage'
 import { TheCondition } from 'the-condition'
 import Draggable from 'react-draggable'
 
@@ -31,7 +29,6 @@ class TheFlick extends React.Component {
     s.body = null
     s.imageWraps = []
     s.movingTimer = -1
-    s.resizeTimer = -1
   }
 
   render () {
@@ -147,9 +144,6 @@ class TheFlick extends React.Component {
     const s = this
     const {props} = s
     toggleDocumentScroll(props.present)
-    s.resizeTimer = setInterval(() => {
-
-    }, 500)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -169,7 +163,6 @@ class TheFlick extends React.Component {
   componentWillUnmount () {
     const s = this
     clearTimeout(s.movingTimer)
-    clearTimeout(s.resizeTimer)
     toggleDocumentScroll(false)
   }
 
@@ -283,91 +276,6 @@ class TheFlick extends React.Component {
         />
       </div>
     )
-  }
-
-}
-
-class TheFlickImage extends React.Component {
-  constructor (props) {
-    super(props)
-    const s = this
-    s.resizeTimer = -1
-    s.imageElm = null
-    s.innerElm = null
-    s.state = {
-      scale: 1
-    }
-  }
-
-  render () {
-    const s = this
-    const {props, state} = s
-    const {
-      src,
-      alt,
-      title,
-      type,
-      description
-    } = props
-    const {scale} = state
-
-    const isVideo = (type === 'video') || isVideoSrc(src)
-    return (
-      <div className='the-flick-image'
-           ref={(imageElm) => { s.imageElm = imageElm }}
-      >
-        <div className='the-flick-image-inner'
-             ref={(innerElm) => { s.innerElm = innerElm }}
-             style={scale < 1 ? {transform: `scale(${scale},${scale})`} : {}}
-        >
-          <TheCondition if={isVideo}>
-            <TheVideo clasName={c('the-flick-image-image')}
-                      preload='metadata'
-                      scale='fit'
-                      controls
-                      {...{src, alt}}
-            />
-          </TheCondition>
-          <TheCondition unless={isVideo}>
-            <TheImage clasName={c('the-flick-image-image')}
-                      scale='fit'
-                      {...{src, alt}}
-                      width='auto'
-                      height='auto'
-            />
-          </TheCondition>
-          <div className='the-flick-image-info'>
-            <TheCondition if={Boolean(title)}>
-              <h3 className='the-flick-image-title'>{title}</h3>
-            </TheCondition>
-            <TheCondition if={Boolean(description)}>
-              <div className='the-flick-image-description'>{description}</div>
-            </TheCondition>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  componentDidMount () {
-    const s = this
-    s.resizeTimer = setInterval(() => {
-      const {imageElm, innerElm} = s
-      if (!imageElm || !innerElm) {
-        return
-      }
-      const maxHeight = imageElm.offsetHeight
-      const height = innerElm.offsetHeight
-      const scale = Math.min(maxHeight, height) / height
-      if (s.state.scale !== scale) {
-        s.setState({scale})
-      }
-    }, 300)
-  }
-
-  componentWillUnmount () {
-    const s = this
-    clearTimeout(s.resizeTimer)
   }
 
 }
