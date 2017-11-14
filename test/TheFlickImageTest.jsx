@@ -17,10 +17,7 @@ describe('the-flick-image', () => {
   })
 
   it('Render a component', () => {
-    let element = render(
-       <TheFlickImage />
-    )
-    ok(element)
+    ok(TheFlickImage)
   })
 })
 
