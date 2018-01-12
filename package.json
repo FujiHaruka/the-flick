@@ -1,6 +1,6 @@
 {
   "name": "the-flick",
-  "version": "2.1.9",
+  "version": "3.0.0",
   "description": "Flickable viewer of the-components",
   "main": "shim",
   "scripts": {
@@ -31,8 +31,8 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "prop-types": "^15.6.0",
-    "react-draggable": "^3.0.3",
-    "the-button": "^2.0.4",
+    "react-draggable": "^3.0.4",
+    "the-button": "^2.0.5",
     "the-component-util": "^2.1.0",
     "the-condition": "^2.0.0",
     "the-icon": "^2.0.0",
@@ -43,8 +43,8 @@
     "the-window": "^5.2.4"
   },
   "devDependencies": {
-    "react": "*",
-    "react-dom": "*",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-router-dom": "^4.1.2",
     "the-component-demo": "^3.0.4",
     "the-script-build": "^2.0.0",
@@ -53,7 +53,7 @@
     "the-script-share": "^1.0.5",
     "the-script-test": "^2.0.1",
     "the-script-update": "^1.0.0",
-    "the-templates": "*"
+    "the-templates": "^2.1.0"
   },
   "peerDependencies": {
     "react": ">=16",
