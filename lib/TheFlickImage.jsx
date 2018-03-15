@@ -1,11 +1,11 @@
 'use strict'
 
-import React from 'react'
-import { TheImage } from 'the-image'
 import c from 'classnames'
-import { TheVideo } from 'the-video'
+import React from 'react'
 import { isVideoSrc } from 'the-component-util'
 import { TheCondition } from 'the-condition'
+import { TheImage } from 'the-image'
+import { TheVideo } from 'the-video'
 import { get } from 'the-window'
 
 class TheFlickImage extends React.Component {
@@ -16,57 +16,8 @@ class TheFlickImage extends React.Component {
     s.imageElm = null
     s.innerElm = null
     s.state = {
-      scale: 1
+      scale: 1,
     }
-  }
-
-  render () {
-    const s = this
-    const {
-      src,
-      alt,
-      title,
-      type,
-      description
-    } = s.props
-    const {scale} = s.state
-
-    const isVideo = (type === 'video') || isVideoSrc(src)
-    return (
-      <div className='the-flick-image'
-           ref={(imageElm) => { s.imageElm = imageElm }}
-      >
-        <div className='the-flick-image-inner'
-             ref={(innerElm) => { s.innerElm = innerElm }}
-             style={scale < 1 ? {transform: `scale(${scale},${scale})`} : {}}
-        >
-          <TheCondition if={isVideo}>
-            <TheVideo clasName={c('the-flick-image-image')}
-                      preload='metadata'
-                      scale='fit'
-                      controls
-                      {...{src, alt}}
-            />
-          </TheCondition>
-          <TheCondition unless={isVideo}>
-            <TheImage clasName={c('the-flick-image-image')}
-                      scale='fit'
-                      {...{src, alt}}
-                      width='auto'
-                      height='auto'
-            />
-          </TheCondition>
-          <div className='the-flick-image-info'>
-            <TheCondition if={Boolean(title)}>
-              <h3 className='the-flick-image-title'>{title}</h3>
-            </TheCondition>
-            <TheCondition if={Boolean(description)}>
-              <div className='the-flick-image-description'>{description}</div>
-            </TheCondition>
-          </div>
-        </div>
-      </div>
-    )
   }
 
   componentDidMount () {
@@ -88,6 +39,55 @@ class TheFlickImage extends React.Component {
   componentWillUnmount () {
     const s = this
     clearTimeout(s.resizeTimer)
+  }
+
+  render () {
+    const s = this
+    const {
+      alt,
+      description,
+      src,
+      title,
+      type,
+    } = s.props
+    const {scale} = s.state
+
+    const isVideo = (type === 'video') || isVideoSrc(src)
+    return (
+      <div className='the-flick-image'
+           ref={(imageElm) => { s.imageElm = imageElm }}
+      >
+        <div className='the-flick-image-inner'
+             ref={(innerElm) => { s.innerElm = innerElm }}
+             style={scale < 1 ? {transform: `scale(${scale},${scale})`} : {}}
+        >
+          <TheCondition if={isVideo}>
+            <TheVideo clasName={c('the-flick-image-image')}
+                      controls
+                      preload='metadata'
+                      scale='fit'
+                      {...{alt, src}}
+            />
+          </TheCondition>
+          <TheCondition unless={isVideo}>
+            <TheImage clasName={c('the-flick-image-image')}
+                      scale='fit'
+                      {...{alt, src}}
+                      height='auto'
+                      width='auto'
+            />
+          </TheCondition>
+          <div className='the-flick-image-info'>
+            <TheCondition if={Boolean(title)}>
+              <h3 className='the-flick-image-title'>{title}</h3>
+            </TheCondition>
+            <TheCondition if={Boolean(description)}>
+              <div className='the-flick-image-description'>{description}</div>
+            </TheCondition>
+          </div>
+        </div>
+      </div>
+    )
   }
 
 }

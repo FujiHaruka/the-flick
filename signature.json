@@ -4,22 +4,36 @@
     "displayName": "TheFlick",
     "methods": [
       {
-        "name": "getBounds",
+        "name": "FlipButton",
         "docblock": null,
-        "modifiers": [],
-        "params": [],
+        "modifiers": [
+          "static"
+        ],
+        "params": [
+          {
+            "name": "{className, icon, onClick, style}",
+            "type": null
+          }
+        ],
         "returns": null
       },
       {
-        "name": "handleDragStart",
+        "name": "changeIndexTo",
         "docblock": null,
         "modifiers": [],
         "params": [
           {
-            "name": "e",
+            "name": "nextIndex",
             "type": null
           }
         ],
+        "returns": null
+      },
+      {
+        "name": "getBounds",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
         "returns": null
       },
       {
@@ -33,6 +47,18 @@
           },
           {
             "name": "data",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "handleDragStart",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "e",
             "type": null
           }
         ],
@@ -55,6 +81,18 @@
         "returns": null
       },
       {
+        "name": "moveAmountFor",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "x",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
         "name": "moveTo",
         "docblock": null,
         "modifiers": [],
@@ -69,55 +107,17 @@
           }
         ],
         "returns": null
-      },
-      {
-        "name": "moveAmountFor",
-        "docblock": null,
-        "modifiers": [],
-        "params": [
-          {
-            "name": "x",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "changeIndexTo",
-        "docblock": null,
-        "modifiers": [],
-        "params": [
-          {
-            "name": "nextIndex",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "FlipButton",
-        "docblock": null,
-        "modifiers": [
-          "static"
-        ],
-        "params": [
-          {
-            "name": "{onClick, icon, className, style}",
-            "type": null
-          }
-        ],
-        "returns": null
       }
     ],
     "props": {
-      "title": {
+      "activeIndex": {
         "type": {
-          "name": "string"
+          "name": "number"
         },
         "required": false,
-        "description": "Flick title",
+        "description": "Active index of images",
         "defaultValue": {
-          "value": "null",
+          "value": "0",
           "computed": false
         }
       },
@@ -143,28 +143,6 @@
           "computed": false
         }
       },
-      "activeIndex": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": "Active index of images",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      },
-      "present": {
-        "type": {
-          "name": "bool"
-        },
-        "required": true,
-        "description": "Shows the dialog",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
       "onChange": {
         "type": {
           "name": "func"
@@ -187,6 +165,17 @@
           "computed": false
         }
       },
+      "present": {
+        "type": {
+          "name": "bool"
+        },
+        "required": true,
+        "description": "Shows the dialog",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
       "spinning": {
         "type": {
           "name": "bool"
@@ -195,6 +184,17 @@
         "description": "Show spin",
         "defaultValue": {
           "value": "false",
+          "computed": false
+        }
+      },
+      "title": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "null",
           "computed": false
         }
       }

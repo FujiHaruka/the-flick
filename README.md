@@ -157,13 +157,13 @@ Flickable viewer of the-components
 
 | Name | Type | Description | Default |
 | --- | --- | ---- | ---- |
-| `title` | string  | Flick title | `null` |
-| `images` | arrayOf union | Images to flip | `[]` |
 | `activeIndex` | number  | Active index of images | `0` |
-| `present` | bool  | Shows the dialog | `false` |
+| `images` | arrayOf union | Images to flip | `[]` |
 | `onChange` | func  | Handle index change | `() => {}` |
 | `onClose` | func  | Close handler | `() => {}` |
+| `present` | bool  | Shows the dialog | `false` |
 | `spinning` | bool  | Show spin | `false` |
+| `title` | string  |  | `null` |
 
 ### 
 

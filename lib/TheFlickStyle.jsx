@@ -1,13 +1,13 @@
 'use strict'
 
-import React from 'react'
-import PropTypes from 'prop-types'
 import c from 'classnames'
-import TheStyle from 'the-style'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { asStyleData } from 'the-component-util'
+import TheStyle from 'the-style'
 
 /** Style for TheFlick */
-const TheFlickStyle = ({id, className, options}) => (
+const TheFlickStyle = ({className, id, options}) => (
   <TheStyle {...{id}}
             className={c('the-flick-style', className)}
             styles={TheFlickStyle.data(options)}
@@ -17,236 +17,236 @@ const TheFlickStyle = ({id, className, options}) => (
 TheFlickStyle.displayName = 'TheFlickStyle'
 TheFlickStyle.propTypes = {
   /** Style options */
-  options: PropTypes.object
+  options: PropTypes.object,
 }
 
 TheFlickStyle.defaultProps = {
-  options: {}
+  options: {},
 }
 
 TheFlickStyle.data = (options) => {
   const {ThemeValues} = TheStyle
   const {
+    contentWidth = ThemeValues.contentWidth,
     dominantColor = ThemeValues.dominantColor,
-    contentWidth = ThemeValues.contentWidth
   } = options
   return Object.assign({},
     asStyleData('.the-flick', {
-      '&': {
-        display: 'none',
-        backgroundColor: 'transparent',
-        position: 'fixed',
-        left: 0,
-        right: 0,
-        bottom: 0,
-        top: 0,
-        zIndex: 99
-      },
       '.the-flick-back': {
         backgroundColor: 'rgba(0,0,0,0.66)',
-        position: 'absolute',
-        left: 0,
-        right: 0,
         bottom: 0,
+        left: 0,
+        position: 'absolute',
+        right: 0,
         top: 0,
-        zIndex: 1
+        zIndex: 1,
       },
       '.the-flick-back-inner': {
-        width: '100%',
-        height: '100%',
         boxSizing: 'border-box',
-        display: 'block'
+        display: 'block',
+        height: '100%',
+        width: '100%',
+      },
+      '.the-flick-body': {
+        boxSizing: 'border-box',
+        height: '100%',
+        overflow: 'hidden',
+        position: 'relative',
+        transition: 'height 300ms',
+        width: '100%',
+      },
+      '.the-flick-close-button': {
+        alignItems: 'center',
+        cursor: 'pointer',
+        display: 'inline-flex',
+        fontSize: '16px',
+        justifyContent: 'center',
+        lineHeight: `16px`,
+        padding: '16px',
+        zIndex: 44,
       },
       '.the-flick-content': {
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-        color: '#AAA',
         background: 'rgba(44, 44, 44, 0.9)',
         border: '1px solid #111',
         borderRadius: '4px',
         boxShadow: '2px 2px 4px rgba(0,0,0,0.33)',
         boxSizing: 'border-box',
-        zIndex: 4,
+        color: '#AAA',
         display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column'
-      },
-      '.the-flick-inner': {
+        flexDirection: 'column',
         height: '100%',
-        width: '100%',
-        boxSizing: 'border-box',
+        justifyContent: 'center',
         position: 'relative',
-        padding: '24px 24px',
+        width: '100%',
         zIndex: 4,
+      },
+      '.the-flick-flip-button': {
+        '&:active': {
+          color: '#888',
+        },
+        backgroundColor: 'transparent',
+        borderColor: '#AAA',
+        borderRadius: '4px',
+        color: '#AAA',
+        height: '128px',
+        minWidth: '21px',
+        padding: 0,
+      },
+      '.the-flick-flip-button-wrap': {
+        alignItems: 'center',
+        bottom: 0,
         display: 'flex',
         justifyContent: 'center',
-        flexDirection: 'column'
+        overflow: 'visible',
+        position: 'absolute',
+        top: 0,
+        width: '1px',
+        zIndex: 5,
       },
-      '.the-flick-close-button': {
-        padding: '16px',
-        fontSize: '16px',
-        lineHeight: `16px`,
-        display: 'inline-flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        cursor: 'pointer',
-        zIndex: 44
+      '.the-flick-footer': {
+        height: '44px',
       },
       '.the-flick-header': {
+        alignItems: 'center',
+        display: 'flex',
+        height: '44px',
+        justifyContent: 'center',
         position: 'relative',
         width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '44px'
       },
       '.the-flick-header-row': {
-        width: '48px',
         '&:nth-child(1)': {
-          textAlign: 'left'
+          textAlign: 'left',
         },
         '&:nth-child(2)': {
-          width: '100%'
+          width: '100%',
         },
         '&:nth-child(3)': {
-          textAlign: 'right'
+          textAlign: 'right',
         },
+        width: '48px',
       },
       '.the-flick-header-title': {
         display: 'block',
-        width: '100%',
-        textAlign: 'center',
+        lineHeight: '48px',
         margin: '0',
-        lineHeight: '48px'
-      },
-      '.the-flick-body': {
-        position: 'relative',
+        textAlign: 'center',
         width: '100%',
-        height: '100%',
-        overflow: 'hidden',
-        boxSizing: 'border-box',
-        transition: 'height 300ms',
       },
-      '.the-flick-footer': {
-        height: '44px'
-      },
-      '.the-flick-image-body-inner': {
-        display: 'flex',
-        position: 'relative',
-        boxSizing: 'border-box',
-        alignItems: 'flex-start',
-        '&.the-flick-image-body-inner-animating': {
-          transition: 'transform 300ms'
-        },
-        '&.react-draggable-dragging': {
-          transition: 'none'
-        }
-      },
-      '.the-flick-image-wrap': {
-        width: '100%',
-        height: '100%'
-      },
-      '.the-flick-image-wrap-active': {},
       '.the-flick-image': {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        width: '100%',
-        height: '100%',
-        padding: '4px 32px',
-        boxSizing: 'border-box',
         '.the-image': {
-          background: 'transparent'
+          background: 'transparent',
         },
         '.the-image-img': {
+          height: 'auto !important',
           width: 'auto !important',
-          height: 'auto !important'
+        },
+        '.the-image-spin': {
+          color: '#888',
+          fontSize: '44px',
         },
         '.the-video': {
           background: 'transparent',
           display: 'block',
-          overflow: 'auto' // TODO remove
+          overflow: 'auto', // TODO remove
         },
         '.the-video-inner': {
           height: 'auto',
-          maxHeight: '100%'
-        },
-        '.the-video-video': {},
-        '.the-image-spin': {
-          fontSize: '44px',
-          color: '#888'
+          maxHeight: '100%',
         },
         '.the-video-spin': {
+          color: '#888',
           fontSize: '44px',
-          color: '#888'
-        }
-      },
-      '.the-flick-image-inner': {
-        display: 'block',
+        },
+        '.the-video-video': {},
+        alignItems: 'center',
+        boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        justifyContent: 'center',
+        padding: '4px 32px',
         width: '100%',
+      },
+      '.the-flick-image-body-inner': {
+        '&.react-draggable-dragging': {
+          transition: 'none',
+        },
+        '&.the-flick-image-body-inner-animating': {
+          transition: 'transform 300ms',
+        },
+        alignItems: 'flex-start',
+        boxSizing: 'border-box',
+        display: 'flex',
+        position: 'relative',
+      },
+      '.the-flick-image-description': {
+        boxSizing: 'border-box',
+        fontSize: 'smaller',
+        margin: '0',
         position: 'relative',
         textAlign: 'center',
-        transition: 'transform 150ms',
-        transformOrigin: '50% 50%'
+        width: '100%',
+        zIndex: 2,
       },
       '.the-flick-image-info': {
         display: 'block',
-        width: '100%'
+        width: '100%',
+      },
+      '.the-flick-image-inner': {
+        display: 'block',
+        position: 'relative',
+        textAlign: 'center',
+        transformOrigin: '50% 50%',
+        transition: 'transform 150ms',
+        width: '100%',
       },
       '.the-flick-image-title': {
-        position: 'relative',
-        zIndex: 2,
+        boxSizing: 'border-box',
         color: '#CCC',
         display: 'block',
-        margin: '4px 0',
-        textAlign: 'center',
-        fontWeight: 'normal',
         fontSize: '1.33em',
-        width: '100%',
-        boxSizing: 'border-box'
-      },
-      '.the-flick-image-description': {
+        fontWeight: 'normal',
+        margin: '4px 0',
         position: 'relative',
-        zIndex: 2,
-        margin: '0',
-        fontSize: 'smaller',
+        textAlign: 'center',
         width: '100%',
+        zIndex: 2,
+      },
+      '.the-flick-image-wrap': {
+        height: '100%',
+        width: '100%',
+      },
+      '.the-flick-image-wrap-active': {},
+      '.the-flick-inner': {
         boxSizing: 'border-box',
-        textAlign: 'center'
-      },
-      '.the-flick-flip-button-wrap': {
-        position: 'absolute',
-        zIndex: 5,
-        top: 0,
-        bottom: 0,
         display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
         justifyContent: 'center',
-        alignItems: 'center',
-        width: '1px',
-        overflow: 'visible'
+        padding: '24px 24px',
+        position: 'relative',
+        width: '100%',
+        zIndex: 4,
       },
-      '.the-flick-flip-button': {
+      '&': {
         backgroundColor: 'transparent',
-        borderColor: '#AAA',
-        color: '#AAA',
-        height: '128px',
-        padding: 0,
-        minWidth: '21px',
-        borderRadius: '4px',
-        '&:active': {
-          color: '#888'
-        }
+        bottom: 0,
+        display: 'none',
+        left: 0,
+        position: 'fixed',
+        right: 0,
+        top: 0,
+        zIndex: 99,
       },
       '&.the-flick-present': {
-        display: 'block'
-      }
+        display: 'block',
+      },
     }),
     asStyleData('.the-flick-fix', {
       '&': {
-        overflow: 'hidden !important'
-      }
+        overflow: 'hidden !important',
+      },
     })
   )
 }
