@@ -282,7 +282,7 @@ class TheFlick extends React.Component {
 
 TheFlick.Style = TheFlickStyle
 TheFlick.Image = TheFlickImage
-TheFlick.CLOSE_ICON = 'fa fa-close'
+TheFlick.CLOSE_ICON = 'fa fa-times'
 TheFlick.PREV_ICON = 'fa fa-chevron-left'
 TheFlick.NEXT_ICON = 'fa fa-chevron-right'
 
