@@ -62,7 +62,7 @@ class TheFlickImage extends React.Component {
              style={scale < 1 ? {transform: `scale(${scale},${scale})`} : {}}
         >
           <TheCondition if={isVideo}>
-            <TheVideo clasName={c('the-flick-image-image')}
+            <TheVideo className={c('the-flick-image-image')}
                       controls
                       preload='metadata'
                       scale='fit'
@@ -70,7 +70,7 @@ class TheFlickImage extends React.Component {
             />
           </TheCondition>
           <TheCondition unless={isVideo}>
-            <TheImage clasName={c('the-flick-image-image')}
+            <TheImage className={c('the-flick-image-image')}
                       scale='fit'
                       {...{alt, src}}
                       height='auto'
